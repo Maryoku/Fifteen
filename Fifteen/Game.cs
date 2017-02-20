@@ -49,18 +49,83 @@ namespace Fifteen
                         x = i;
                         y = j;
 
-                        Console.WriteLine("{0} {1}", i, j);
+                        //Console.WriteLine("{0} {1}", i, j);
                     }
                 }
             }
 
         }
 
-        public int Shift
+        public void Shift(int value)
         {
-            get
+            int size = (int)Math.Sqrt(field.Length);
+            int tmp, i, j;
+
+            GetLocation(value, out i, out j);
+
+            if ((j+1 <= size - 1) && (field[i, j+1] == 0))
             {
-                return 0;
+                tmp = field[i, j];
+                field[i, j] = field[i, j + 1];
+                field[i, j + 1] = tmp;
+
+                for (int m = 0; m < size; m++)
+                {
+                    for (int n = 0; n < size; n++)
+                    {
+                        Console.Write("{0} ", field[m, n]);
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else if ((j-1 >= 0) && (field[i, j-1] == 0))
+            {
+                tmp = field[i, j];
+                field[i, j] = field[i, j - 1];
+                field[i, j - 1] = tmp;
+
+                for (int m = 0; m < size; m++)
+                {
+                    for (int n = 0; n < size; n++)
+                    {
+                        Console.Write("{0} ", field[m, n]);
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else if ((i+1 <= size-1) && (field[i+1, j] == 0))
+            {
+                tmp = field[i, j];
+                field[i, j] = field[i + 1, j];
+                field[i + 1, j] = tmp;
+
+                for (int m = 0; m < size; m++)
+                {
+                    for (int n = 0; n < size; n++)
+                    {
+                        Console.Write("{0} ", field[m, n]);
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else if ((i-1 >= 0) && (field[i-1, j] == 0))
+            {
+                tmp = field[i, j];
+                field[i, j] = field[i-1, j];
+                field[i-1, j] = tmp;
+
+                for (int m = 0; m < size; m++)
+                {
+                    for (int n = 0; n < size; n++)
+                    {
+                        Console.Write("{0} ", field[m, n]);
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Can't move!");
             }
         }
     }
